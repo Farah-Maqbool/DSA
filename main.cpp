@@ -26,19 +26,19 @@ class LinkedList{
 			}
 			else{
 				Node* temp = this->start;
-				while (temp.next != nullptr){
-					temp = temp.next;
+				while (temp->next != nullptr){
+					temp = temp->next;
 				}
-				temp.next = &new_node;
+				temp->next = &new_node;
 			}
 		}
 		
 		void display(){
 			Node* temp = this->start;
-			cout << temp.data << endl;
-			while (temp.next != nullptr){
-				temp = temp.next;
-				cout << temp.data << endl;
+			cout << temp->data << endl;
+			while (temp->next != nullptr){
+				temp = temp->next;
+				cout << temp->data << endl;
 			}
 		}
 };
