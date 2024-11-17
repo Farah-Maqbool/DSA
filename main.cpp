@@ -5,7 +5,7 @@ using namespace std;
 class Node{
 	public:
 		int data;
-		int* next;
+		Node* next;
 		
 		Node(int data){
 			this->data = data;
@@ -16,7 +16,7 @@ class Node{
 
 class LinkedList{
 	public:
-		int* start = nullptr;
+		Node* start = nullptr;
 		
 		void insertAtLast(int value){
 			Node new_node(value);
@@ -24,12 +24,32 @@ class LinkedList{
 			if (start==nullptr){
 				start = &new_node;
 			}
+			else{
+				Node* temp = this->start;
+				while (temp.next != nullptr){
+					temp = temp.next;
+				}
+				temp.next = &new_node;
+			}
+		}
+		
+		void display(){
+			Node* temp = this->start;
+			cout << temp.data << endl;
+			while (temp.next != nullptr){
+				temp = temp.next;
+				cout << temp.data << endl;
+			}
 		}
 };
 
 int main(int argc, char** argv) {
-	int num = 5;
-	Node myobj(3,num);
+	LinkedList list;
+	list.insertAtLast(4);
+	list.insertAtLast(3);
+	list.insertAtLast(2);
+	list.display();
+
 
 	return 0;
 }
