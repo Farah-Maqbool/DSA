@@ -66,7 +66,10 @@ class LinkedList{
 		
 		void DeleteAtStart(){
 			Node* temp = this->start;
-			start = start->next;
+			start = temp->next;
+			delete temp;
+			
+			
 		}
 		
 		void DeleteAtLast(){
@@ -74,11 +77,16 @@ class LinkedList{
 			
 			while (temp->next!=nullptr){
 				if (temp->next->next == nullptr){
+					delete temp->next;
 					temp->next = nullptr;
 					break;
 				}
 				temp = temp->next;
 			}
+		}
+		
+		void DeleteBetween(int place){
+			
 		}
 		
 		void display(){
