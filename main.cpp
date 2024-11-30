@@ -7,8 +7,8 @@ class Node{
 		int data;
 		Node* next;
 		
-		Node(int data){
-			this->data = data;
+		Node(int val){
+			this->data = val;
 			this->next = nullptr;
 		}
 		
@@ -19,17 +19,48 @@ class LinkedList{
 		Node* start = nullptr;
 		
 		void insertAtLast(int value){
-			Node new_node(value);
+			Node* new_node = new Node(value);
 			
 			if (start==nullptr){
-				start = &new_node;
+				start = new_node;
+				
+			}
+			else{
+				Node* temp = this->start;
+				
+				while (temp->next != nullptr){	
+					temp = temp->next;
+				} 
+				temp->next = new_node;
+			}
+		}
+		
+		void insertAtStart(int value){
+			Node* new_node = new Node(value);
+			if (start==nullptr){
+				start = new_node;	
+			}
+			else{
+				new_node->next = start;
+				start = new_node;
+				
+			}
+		}
+		
+		void insertBetween(int value, int whichValue){
+			Node* new_node = new Node(value);
+			if (start==nullptr){
+				start = new_node;	
 			}
 			else{
 				Node* temp = this->start;
 				while (temp->next != nullptr){
+					if (temp->data == whichValue){
+						new_node->next = temp->next;
+						temp->next = new_node;
+					}
 					temp = temp->next;
 				}
-				temp->next = &new_node;
 			}
 		}
 		
@@ -40,16 +71,21 @@ class LinkedList{
 				temp = temp->next;
 				cout << temp->data << endl;
 			}
+			
 		}
+		
 };
 
 int main(int argc, char** argv) {
 	LinkedList list;
 	list.insertAtLast(4);
 	list.insertAtLast(3);
+	list.insertAtLast(6);
+	list.insertAtLast(1);
 	list.insertAtLast(2);
+	list.insertBetween(5,6);
+	list.insertAtStart(0);
 	list.display();
-
-
+	
 	return 0;
 }
