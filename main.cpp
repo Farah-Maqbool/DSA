@@ -69,6 +69,18 @@ class LinkedList{
 			start = start->next;
 		}
 		
+		void DeleteAtLast(){
+			Node* temp = this->start;
+			
+			while (temp->next!=nullptr){
+				if (temp->next->next == nullptr){
+					temp->next = nullptr;
+					break;
+				}
+				temp = temp->next;
+			}
+		}
+		
 		void display(){
 			Node* temp = this->start;
 			cout << temp->data << endl;
@@ -95,6 +107,9 @@ int main(int argc, char** argv) {
 	cout << "After Deletion" << endl;
 	list.DeleteAtStart();
 	list.display();
+	cout << "After Deletion At last" << endl;
+	list.DeleteAtLast();
+	list.display(); 
 	
 	return 0;
 }
