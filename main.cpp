@@ -64,6 +64,11 @@ class LinkedList{
 			}
 		}
 		
+		void DeleteAtStart(){
+			Node* temp = this->start;
+			start = start->next;
+		}
+		
 		void display(){
 			Node* temp = this->start;
 			cout << temp->data << endl;
@@ -85,6 +90,10 @@ int main(int argc, char** argv) {
 	list.insertAtLast(2);
 	list.insertBetween(5,6);
 	list.insertAtStart(0);
+	cout << "Before Deletion" << endl;
+	list.display();
+	cout << "After Deletion" << endl;
+	list.DeleteAtStart();
 	list.display();
 	
 	return 0;
