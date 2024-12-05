@@ -58,6 +58,7 @@ class LinkedList{
 					if (temp->data == whichValue){
 						new_node->next = temp->next;
 						temp->next = new_node;
+						break;
 					}
 					temp = temp->next;
 				}
@@ -87,6 +88,18 @@ class LinkedList{
 		
 		void DeleteBetween(int place){
 			
+			Node* temp = this->start;
+			int i = 1;
+			while (i<=place){
+				if (i==(place-1)){
+					Node* ptr = temp->next;
+					temp->next = temp->next->next;
+					delete ptr;
+					return;
+				}
+				temp = temp->next;
+				i++;
+			}
 		}
 		
 		void display(){
@@ -106,6 +119,7 @@ int main(int argc, char** argv) {
 	list.insertAtLast(4);
 	list.insertAtLast(3);
 	list.insertAtLast(6);
+	list.insertAtLast(8);
 	list.insertAtLast(1);
 	list.insertAtLast(2);
 	list.insertBetween(5,6);
@@ -118,6 +132,9 @@ int main(int argc, char** argv) {
 	cout << "After Deletion At last" << endl;
 	list.DeleteAtLast();
 	list.display(); 
+	cout << "Delete Between" << endl;
+	list.DeleteBetween(2);
+	list.display();
 	
 	return 0;
 }
